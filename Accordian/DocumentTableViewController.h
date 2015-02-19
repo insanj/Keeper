@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DocumentTableViewController : UITableViewController
+@interface DocumentTableViewController : UITableViewController <UIAlertViewDelegate>
+
+@property (strong, nonatomic) NSMutableArray *currentDocuments;
 
 @end

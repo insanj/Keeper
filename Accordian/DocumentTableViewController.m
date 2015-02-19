@@ -7,6 +7,7 @@
 //
 
 #import "DocumentTableViewController.h"
+#import "Document.h"
 
 @implementation DocumentTableViewController
 
@@ -14,7 +15,7 @@
 	self = [super initWithStyle:UITableViewStylePlain];
 	
 	if (self) {
-		
+		self.currentDocuments = [[NSMutableArray alloc] init];
 	}
 	
 	return self;
@@ -24,85 +25,120 @@
     [super viewDidLoad];
 	
 	self.title = @"Documents";
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plusButtonTapped:)];
 	
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	NSArray *savedDocuments = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Accordian.Documents"];
+
+	if (savedDocuments) {
+		for (NSDictionary *dictionaryRepresentation in savedDocuments) {
+			Document *document = [[Document alloc] init];
+			[document setValuesFromDictionaryRespresentation:dictionaryRepresentation];
+			[self.currentDocuments addObject:document];
+		}
+		
+		[self.tableView reloadData];
+	}
+	
+	else if (!savedDocuments) {
+		[[NSUserDefaults standardUserDefaults] setObject:@[] forKey:@"Accordian.Documents"];
+	}
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - actions
+
+- (void)plusButtonTapped:(UIBarButtonItem *)sender {
+	UIAlertView *createDocumentAlert = [[UIAlertView alloc] initWithTitle:@"New Document" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
+	createDocumentAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+	[createDocumentAlert show];
 }
 
-#pragma mark - Table view data source
+#pragma mark alert view
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex != [alertView cancelButtonIndex]) {
+		Document *createdDocument = [[Document alloc] init];
+		createdDocument.createdDate = [NSDate date];
+		createdDocument.content = [alertView textFieldAtIndex:0].text;
+		[self.currentDocuments addObject:createdDocument];
+		
+		NSArray *savedDocuments = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Accordian.Documents"];
+		[[NSUserDefaults standardUserDefaults] setObject:[savedDocuments arrayByAddingObject:[createdDocument dictionaryRepresentationOfDocument]] forKey:@"Accordian.Documents"];
+
+		[self.tableView reloadData];
+	}
+}
+
+#pragma mark - table view
+#pragma mark data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+	return fmax(self.currentDocuments.count, 1);
 }
 
-/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (self.currentDocuments.count > 0) {
+		Document *rowDocument = self.currentDocuments[indexPath.row];
+		CGSize sizeOfDocumentContent = [rowDocument.content boundingRectWithSize:CGSizeMake(tableView.frame.size.width - 15.0, INFINITY) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18.0]} context:nil].size;
+		CGSize sizeOfDateContent = [rowDocument.createdDate.description boundingRectWithSize:CGSizeMake(tableView.frame.size.width - 15.0, INFINITY) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14.0]} context:nil].size;
+		return 20.0 + sizeOfDocumentContent.height + sizeOfDateContent.height;
+	}
+	
+	return self.tableView.frame.size.height - 64.0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+	if (self.currentDocuments.count > 0) {
+		UITableViewCell *documentCell = [tableView dequeueReusableCellWithIdentifier:@"Document"];
+		
+		if (!documentCell) {
+			documentCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Document"];
+			documentCell.textLabel.font = [UIFont systemFontOfSize:18.0];
+			documentCell.textLabel.numberOfLines = 0;
+			
+			documentCell.detailTextLabel.font = [UIFont systemFontOfSize:14.0];
+			documentCell.detailTextLabel.textColor = [UIColor darkGrayColor];
+			documentCell.detailTextLabel.numberOfLines = 0;
+		}
+		
+		Document *document = (Document *)self.currentDocuments[indexPath.row];
+		
+		documentCell.textLabel.text = document.content;
+		
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+		
+		documentCell.detailTextLabel.text = [dateFormatter stringFromDate:document.createdDate];
+		
+		return documentCell;
+	}
+	
+	else {
+		UITableViewCell *nothingHereCell = [tableView dequeueReusableCellWithIdentifier:@"Nothing"];
+		
+		if (!nothingHereCell) {
+			nothingHereCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Nothing"];
+			nothingHereCell.textLabel.textColor = [UIColor darkGrayColor];
+			nothingHereCell.textLabel.numberOfLines = 2;
+			nothingHereCell.textLabel.textAlignment = NSTextAlignmentCenter;
+			nothingHereCell.selectionStyle = UITableViewCellSelectionStyleNone;
+		}
+		
+		nothingHereCell.textLabel.text = @"No Documents Yet\nTap Plus to Create One";
+		return nothingHereCell;
+	}
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	Document *document = self.currentDocuments[indexPath.row];
+	UIAlertView *documentAlert = [[UIAlertView alloc] initWithTitle:@"Document" message:document.content delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+	[documentAlert show];
+
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
