@@ -109,7 +109,8 @@
 		documentCell.textLabel.text = document.content;
 		
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+		dateFormatter.dateStyle = NSDateFormatterShortStyle;
+		dateFormatter.timeStyle = NSDateFormatterShortStyle;
 		
 		documentCell.detailTextLabel.text = [dateFormatter stringFromDate:document.createdDate];
 		
