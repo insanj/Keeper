@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "MainNavigationController.h"
 #import "DocumentTableViewController.h"
 
 @implementation AppDelegate
@@ -18,7 +17,7 @@
 	
 	UIWindow *appWindow = [[UIWindow alloc] initWithFrame:mainScreenBounds];
 	appWindow.backgroundColor = [UIColor whiteColor];
-	appWindow.rootViewController = [[MainNavigationController alloc] initWithRootViewController:[[DocumentTableViewController alloc] init]];
+	appWindow.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[DocumentTableViewController alloc] init]];
 	
 	self.window = appWindow;
 	[self.window makeKeyAndVisible];

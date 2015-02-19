@@ -12,7 +12,6 @@
 		9EEF81771A96690200DFE32C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EEF81761A96690200DFE32C /* Images.xcassets */; };
 		9EEF817A1A96690200DFE32C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EEF81781A96690200DFE32C /* LaunchScreen.xib */; };
 		9EEF81861A96690200DFE32C /* AccordianTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF81851A96690200DFE32C /* AccordianTests.m */; };
-		9EEF81911A966D2700DFE32C /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF81901A966D2700DFE32C /* MainNavigationController.m */; };
 		9EEF81941A966D4E00DFE32C /* DocumentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF81931A966D4E00DFE32C /* DocumentTableViewController.m */; };
 		9EEF81971A966FD300DFE32C /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF81961A966FD300DFE32C /* Document.m */; };
 /* End PBXBuildFile section */
@@ -38,8 +37,6 @@
 		9EEF817F1A96690200DFE32C /* AccordianTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccordianTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EEF81841A96690200DFE32C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9EEF81851A96690200DFE32C /* AccordianTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccordianTests.m; sourceTree = "<group>"; };
-		9EEF818F1A966D2700DFE32C /* MainNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationController.h; sourceTree = "<group>"; };
-		9EEF81901A966D2700DFE32C /* MainNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationController.m; sourceTree = "<group>"; };
 		9EEF81921A966D4E00DFE32C /* DocumentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentTableViewController.h; sourceTree = "<group>"; };
 		9EEF81931A966D4E00DFE32C /* DocumentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentTableViewController.m; sourceTree = "<group>"; };
 		9EEF81951A966FD300DFE32C /* Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
@@ -87,8 +84,6 @@
 			children = (
 				9EEF816D1A96690200DFE32C /* AppDelegate.h */,
 				9EEF816E1A96690200DFE32C /* AppDelegate.m */,
-				9EEF818F1A966D2700DFE32C /* MainNavigationController.h */,
-				9EEF81901A966D2700DFE32C /* MainNavigationController.m */,
 				9EEF81921A966D4E00DFE32C /* DocumentTableViewController.h */,
 				9EEF81931A966D4E00DFE32C /* DocumentTableViewController.m */,
 				9EEF81951A966FD300DFE32C /* Document.h */,
@@ -226,7 +221,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EEF816F1A96690200DFE32C /* AppDelegate.m in Sources */,
-				9EEF81911A966D2700DFE32C /* MainNavigationController.m in Sources */,
 				9EEF81941A966D4E00DFE32C /* DocumentTableViewController.m in Sources */,
 				9EEF81971A966FD300DFE32C /* Document.m in Sources */,
 				9EEF816C1A96690200DFE32C /* main.m in Sources */,
