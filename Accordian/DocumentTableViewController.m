@@ -25,6 +25,9 @@
     [super viewDidLoad];
 	
 	self.title = @"Documents";
+	
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonTapped:)];
+	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plusButtonTapped:)];
 	
 	NSArray *savedDocuments = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Accordian.Documents"];
@@ -50,6 +53,26 @@
 	UIAlertView *createDocumentAlert = [[UIAlertView alloc] initWithTitle:@"New Document" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
 	createDocumentAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
 	[createDocumentAlert show];
+}
+
+- (void)editButtonTapped:(UIBarButtonItem *)sender {
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped:)];
+	
+	[self.tableView setEditing:YES animated:YES];
+	
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
+	
+	// [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.currentDocuments.count)] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)doneButtonTapped:(UIBarButtonItem *)sender {
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonTapped:)];
+
+	[self.tableView setEditing:NO animated:YES];
+
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
 }
 
 #pragma mark alert view
@@ -82,9 +105,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.currentDocuments.count > 0) {
 		Document *rowDocument = self.currentDocuments[indexPath.row];
-		CGSize sizeOfDocumentContent = [rowDocument.content boundingRectWithSize:CGSizeMake(tableView.frame.size.width - 15.0, INFINITY) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18.0]} context:nil].size;
-		CGSize sizeOfDateContent = [rowDocument.createdDate.description boundingRectWithSize:CGSizeMake(tableView.frame.size.width - 15.0, INFINITY) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14.0]} context:nil].size;
-		return 20.0 + sizeOfDocumentContent.height + sizeOfDateContent.height;
+		CGFloat boundingWidth = tableView.isEditing ? tableView.frame.size.width - 55.0 :  tableView.frame.size.width - 15.0;
+		CGSize sizeOfDocumentContent = [rowDocument.content boundingRectWithSize:CGSizeMake(boundingWidth, INFINITY) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18.0]} context:nil].size;
+		CGSize sizeOfDateContent = [rowDocument.createdDate.description boundingRectWithSize:CGSizeMake(boundingWidth, INFINITY) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14.0]} context:nil].size;
+		return 40.0 + sizeOfDocumentContent.height + sizeOfDateContent.height;
 	}
 	
 	return self.tableView.frame.size.height - 64.0;
@@ -133,13 +157,28 @@
 	}
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+	return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (editingStyle == UITableViewCellEditingStyleDelete) {
+
+		[tableView beginUpdates];
+		
+		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		[self.currentDocuments removeObjectAtIndex:indexPath.row];
+
+		[tableView endUpdates];
+	}
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	Document *document = self.currentDocuments[indexPath.row];
 	UIAlertView *documentAlert = [[UIAlertView alloc] initWithTitle:@"Document" message:document.content delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
 	[documentAlert show];
-
 }
 
 @end
