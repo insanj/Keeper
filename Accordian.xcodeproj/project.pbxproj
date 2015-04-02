@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9ED87C341ACDC668004D79DE /* DocumentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED87C331ACDC668004D79DE /* DocumentDetailViewController.m */; };
+		9ED87C371ACDC6D2004D79DE /* DocumentCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED87C361ACDC6D2004D79DE /* DocumentCreateViewController.m */; };
 		9EEF816C1A96690200DFE32C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF816B1A96690200DFE32C /* main.m */; };
 		9EEF816F1A96690200DFE32C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF816E1A96690200DFE32C /* AppDelegate.m */; };
 		9EEF81771A96690200DFE32C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EEF81761A96690200DFE32C /* Images.xcassets */; };
@@ -27,6 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9ED87C321ACDC668004D79DE /* DocumentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentDetailViewController.h; sourceTree = "<group>"; };
+		9ED87C331ACDC668004D79DE /* DocumentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentDetailViewController.m; sourceTree = "<group>"; };
+		9ED87C351ACDC6D2004D79DE /* DocumentCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentCreateViewController.h; sourceTree = "<group>"; };
+		9ED87C361ACDC6D2004D79DE /* DocumentCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentCreateViewController.m; sourceTree = "<group>"; };
 		9EEF81661A96690200DFE32C /* Accordian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Accordian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EEF816A1A96690200DFE32C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9EEF816B1A96690200DFE32C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -86,6 +92,10 @@
 				9EEF816E1A96690200DFE32C /* AppDelegate.m */,
 				9EEF81921A966D4E00DFE32C /* DocumentTableViewController.h */,
 				9EEF81931A966D4E00DFE32C /* DocumentTableViewController.m */,
+				9ED87C351ACDC6D2004D79DE /* DocumentCreateViewController.h */,
+				9ED87C361ACDC6D2004D79DE /* DocumentCreateViewController.m */,
+				9ED87C321ACDC668004D79DE /* DocumentDetailViewController.h */,
+				9ED87C331ACDC668004D79DE /* DocumentDetailViewController.m */,
 				9EEF81951A966FD300DFE32C /* Document.h */,
 				9EEF81961A966FD300DFE32C /* Document.m */,
 				9EEF81761A96690200DFE32C /* Images.xcassets */,
@@ -221,7 +231,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EEF816F1A96690200DFE32C /* AppDelegate.m in Sources */,
+				9ED87C341ACDC668004D79DE /* DocumentDetailViewController.m in Sources */,
 				9EEF81941A966D4E00DFE32C /* DocumentTableViewController.m in Sources */,
+				9ED87C371ACDC6D2004D79DE /* DocumentCreateViewController.m in Sources */,
 				9EEF81971A966FD300DFE32C /* Document.m in Sources */,
 				9EEF816C1A96690200DFE32C /* main.m in Sources */,
 			);

@@ -8,6 +8,7 @@
 
 #import "DocumentTableViewController.h"
 #import "Document.h"
+#import "DocumentCreateViewController.h"
 
 @implementation DocumentTableViewController
 
@@ -29,9 +30,12 @@
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonTapped:)];
 	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plusButtonTapped:)];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
 	
 	NSArray *savedDocuments = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Accordian.Documents"];
-
 	if (savedDocuments) {
 		for (NSDictionary *dictionaryRepresentation in savedDocuments) {
 			Document *document = [[Document alloc] init];
@@ -45,10 +49,6 @@
 	else if (!savedDocuments) {
 		[[NSUserDefaults standardUserDefaults] setObject:@[] forKey:@"Accordian.Documents"];
 	}
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
 	
 	self.navigationItem.leftBarButtonItem.enabled = self.currentDocuments.count > 0;
 }
@@ -56,9 +56,15 @@
 #pragma mark - actions
 
 - (void)plusButtonTapped:(UIBarButtonItem *)sender {
-	UIAlertView *createDocumentAlert = [[UIAlertView alloc] initWithTitle:@"New Document" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
+	DocumentCreateViewController *createViewController = [[DocumentCreateViewController alloc] init];
+	UINavigationController *modalViewController = [[UINavigationController alloc] initWithRootViewController:createViewController];
+	[self presentViewController:modalViewController animated:YES completion:NULL];
+	
+	// [self.navigationController pushViewController:createViewController animated:YES];
+	
+	/*UIAlertView *createDocumentAlert = [[UIAlertView alloc] initWithTitle:@"New Document" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
 	createDocumentAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-	[createDocumentAlert show];
+	[createDocumentAlert show];*/
 }
 
 - (void)editButtonTapped:(UIBarButtonItem *)sender {
@@ -68,8 +74,6 @@
 	
 	[self.tableView beginUpdates];
 	[self.tableView endUpdates];
-	
-	// [self.tableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.currentDocuments.count)] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)doneButtonTapped:(UIBarButtonItem *)sender {
@@ -180,13 +184,7 @@
 			[tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 			[self doneButtonTapped:self.navigationItem.leftBarButtonItem];
 			self.navigationItem.leftBarButtonItem.enabled = NO;
-			// self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonTapped:)];
-			// self.navigationItem.leftBarButtonItem.enabled = NO;
 		}
-		
-		/*else {
-			self.navigationItem.leftBarButtonItem.enabled = YES;
-		}*/
 		
 		[tableView endUpdates];
 	}
@@ -195,11 +193,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	//if (self.currentDocuments.count < indexPath.row) {
-		Document *document = self.currentDocuments[indexPath.row];
-		UIAlertView *documentAlert = [[UIAlertView alloc] initWithTitle:@"Document" message:document.content delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-		[documentAlert show];
-	//}
+	Document *document = self.currentDocuments[indexPath.row];
+	UIAlertView *documentAlert = [[UIAlertView alloc] initWithTitle:@"Document" message:document.content delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+	[documentAlert show];
 }
 
 @end
