@@ -47,6 +47,12 @@
 	}
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	
+	self.navigationItem.leftBarButtonItem.enabled = self.currentDocuments.count > 0;
+}
+
 #pragma mark - actions
 
 - (void)plusButtonTapped:(UIBarButtonItem *)sender {
@@ -86,6 +92,8 @@
 		
 		NSArray *savedDocuments = [[NSUserDefaults standardUserDefaults] arrayForKey:@"Accordian.Documents"];
 		[[NSUserDefaults standardUserDefaults] setObject:[savedDocuments arrayByAddingObject:[createdDocument dictionaryRepresentationOfDocument]] forKey:@"Accordian.Documents"];
+
+		self.navigationItem.leftBarButtonItem.enabled = YES;
 
 		[self.tableView reloadData];
 	}
@@ -149,7 +157,7 @@
 			nothingHereCell.textLabel.textColor = [UIColor darkGrayColor];
 			nothingHereCell.textLabel.numberOfLines = 2;
 			nothingHereCell.textLabel.textAlignment = NSTextAlignmentCenter;
-			nothingHereCell.selectionStyle = UITableViewCellSelectionStyleNone;
+			nothingHereCell.userInteractionEnabled = NO;
 		}
 		
 		nothingHereCell.textLabel.text = @"No Documents Yet\nTap Plus to Create One";
@@ -158,17 +166,28 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
+	return self.currentDocuments.count > 0;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
-
 		[tableView beginUpdates];
-		
+
 		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 		[self.currentDocuments removeObjectAtIndex:indexPath.row];
 
+		if (self.currentDocuments.count == 0) {
+			[tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+			[self doneButtonTapped:self.navigationItem.leftBarButtonItem];
+			self.navigationItem.leftBarButtonItem.enabled = NO;
+			// self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonTapped:)];
+			// self.navigationItem.leftBarButtonItem.enabled = NO;
+		}
+		
+		/*else {
+			self.navigationItem.leftBarButtonItem.enabled = YES;
+		}*/
+		
 		[tableView endUpdates];
 	}
 }
@@ -176,9 +195,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	Document *document = self.currentDocuments[indexPath.row];
-	UIAlertView *documentAlert = [[UIAlertView alloc] initWithTitle:@"Document" message:document.content delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-	[documentAlert show];
+	//if (self.currentDocuments.count < indexPath.row) {
+		Document *document = self.currentDocuments[indexPath.row];
+		UIAlertView *documentAlert = [[UIAlertView alloc] initWithTitle:@"Document" message:document.content delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+		[documentAlert show];
+	//}
 }
 
 @end
