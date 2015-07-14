@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class ACNote;
+
+@protocol ACSegmentedViewDelegate <NSObject>
+
+- (ACNote *)segmentedNoteForCellAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 @interface ACSegmentedViewController : UITableViewController
 
 /**

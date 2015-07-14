@@ -50,6 +50,8 @@
     
     _segmentedTitleView.frame = navigationBarFrame;
     self.navigationItem.titleView = _segmentedTitleView;
+    
+    self.tableView.rowHeight = 60.0;
 }
 
 #pragma mark - table view
@@ -63,7 +65,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50.0;
+    return 125.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
