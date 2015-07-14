@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ACViewController.h
 //  Accordian
 //
 //  Created by Julian Weiss on 7/14/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ACViewController : UIViewController
 
 @end
-

@@ -1,19 +1,15 @@
 //
-//  AppDelegate.m
+//  ACAppDelegate.m
 //  Accordian
 //
 //  Created by Julian Weiss on 7/14/15.
 //  Copyright (c) 2015 Julian Weiss. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "ACAppDelegate.h"
+#import "ACViewController.h"
 
-@interface AppDelegate ()
-
-@end
-
-@implementation AppDelegate
-
+@implementation ACAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.

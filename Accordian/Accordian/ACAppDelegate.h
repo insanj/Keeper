@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ACAppDelegate.h
 //  Accordian
 //
 //  Created by Julian Weiss on 7/14/15.
@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface ACAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-
 @end
-

@@ -8,10 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		233E65621B54D828005C99D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E65611B54D828005C99D4 /* main.m */; };
-		233E65651B54D828005C99D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E65641B54D828005C99D4 /* AppDelegate.m */; };
-		233E65681B54D828005C99D4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E65671B54D828005C99D4 /* ViewController.m */; };
+		233E65651B54D828005C99D4 /* ACAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E65641B54D828005C99D4 /* ACAppDelegate.m */; };
+		233E65681B54D828005C99D4 /* ACViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E65671B54D828005C99D4 /* ACViewController.m */; };
 		233E656D1B54D828005C99D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 233E656C1B54D828005C99D4 /* Images.xcassets */; };
-		233E65701B54D828005C99D4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 233E656E1B54D828005C99D4 /* LaunchScreen.xib */; };
 		233E657C1B54D829005C99D4 /* AccordianTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E657B1B54D829005C99D4 /* AccordianTests.m */; };
 /* End PBXBuildFile section */
 
@@ -29,12 +28,11 @@
 		233E655C1B54D828005C99D4 /* Accordian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Accordian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		233E65601B54D828005C99D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		233E65611B54D828005C99D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		233E65631B54D828005C99D4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		233E65641B54D828005C99D4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		233E65661B54D828005C99D4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		233E65671B54D828005C99D4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		233E65631B54D828005C99D4 /* ACAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACAppDelegate.h; sourceTree = "<group>"; };
+		233E65641B54D828005C99D4 /* ACAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACAppDelegate.m; sourceTree = "<group>"; };
+		233E65661B54D828005C99D4 /* ACViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACViewController.h; sourceTree = "<group>"; };
+		233E65671B54D828005C99D4 /* ACViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACViewController.m; sourceTree = "<group>"; };
 		233E656C1B54D828005C99D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		233E656F1B54D828005C99D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		233E65751B54D829005C99D4 /* AccordianTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccordianTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		233E657A1B54D829005C99D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		233E657B1B54D829005C99D4 /* AccordianTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccordianTests.m; sourceTree = "<group>"; };
@@ -79,12 +77,11 @@
 		233E655E1B54D828005C99D4 /* Accordian */ = {
 			isa = PBXGroup;
 			children = (
-				233E65631B54D828005C99D4 /* AppDelegate.h */,
-				233E65641B54D828005C99D4 /* AppDelegate.m */,
-				233E65661B54D828005C99D4 /* ViewController.h */,
-				233E65671B54D828005C99D4 /* ViewController.m */,
+				233E65631B54D828005C99D4 /* ACAppDelegate.h */,
+				233E65641B54D828005C99D4 /* ACAppDelegate.m */,
+				233E65661B54D828005C99D4 /* ACViewController.h */,
+				233E65671B54D828005C99D4 /* ACViewController.m */,
 				233E656C1B54D828005C99D4 /* Images.xcassets */,
-				233E656E1B54D828005C99D4 /* LaunchScreen.xib */,
 				233E655F1B54D828005C99D4 /* Supporting Files */,
 			);
 			path = Accordian;
@@ -160,6 +157,7 @@
 		233E65541B54D828005C99D4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AC;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Julian Weiss";
 				TargetAttributes = {
@@ -197,7 +195,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				233E65701B54D828005C99D4 /* LaunchScreen.xib in Resources */,
 				233E656D1B54D828005C99D4 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,8 +213,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				233E65681B54D828005C99D4 /* ViewController.m in Sources */,
-				233E65651B54D828005C99D4 /* AppDelegate.m in Sources */,
+				233E65681B54D828005C99D4 /* ACViewController.m in Sources */,
+				233E65651B54D828005C99D4 /* ACAppDelegate.m in Sources */,
 				233E65621B54D828005C99D4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,17 +236,6 @@
 			targetProxy = 233E65761B54D829005C99D4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		233E656E1B54D828005C99D4 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				233E656F1B54D828005C99D4 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		233E657D1B54D829005C99D4 /* Debug */ = {
@@ -338,6 +324,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Accordian/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -350,6 +337,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Accordian/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

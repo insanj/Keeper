@@ -1,18 +1,14 @@
 //
-//  ViewController.m
+//  ACViewController.m
 //  Accordian
 //
 //  Created by Julian Weiss on 7/14/15.
 //  Copyright (c) 2015 Julian Weiss. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "ACViewController.h"
 
-@interface ViewController ()
-
-@end
-
-@implementation ViewController
+@implementation ACViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
