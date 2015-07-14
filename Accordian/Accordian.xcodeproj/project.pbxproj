@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		233E65621B54D828005C99D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E65611B54D828005C99D4 /* main.m */; };
 		233E65651B54D828005C99D4 /* ACAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E65641B54D828005C99D4 /* ACAppDelegate.m */; };
-		233E65681B54D828005C99D4 /* ACViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E65671B54D828005C99D4 /* ACViewController.m */; };
 		233E656D1B54D828005C99D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 233E656C1B54D828005C99D4 /* Images.xcassets */; };
 		233E657C1B54D829005C99D4 /* AccordianTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E657B1B54D829005C99D4 /* AccordianTests.m */; };
+		233E65871B54D980005C99D4 /* ACSegmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233E65861B54D980005C99D4 /* ACSegmentedViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,12 +30,12 @@
 		233E65611B54D828005C99D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		233E65631B54D828005C99D4 /* ACAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACAppDelegate.h; sourceTree = "<group>"; };
 		233E65641B54D828005C99D4 /* ACAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACAppDelegate.m; sourceTree = "<group>"; };
-		233E65661B54D828005C99D4 /* ACViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACViewController.h; sourceTree = "<group>"; };
-		233E65671B54D828005C99D4 /* ACViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACViewController.m; sourceTree = "<group>"; };
 		233E656C1B54D828005C99D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		233E65751B54D829005C99D4 /* AccordianTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccordianTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		233E657A1B54D829005C99D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		233E657B1B54D829005C99D4 /* AccordianTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccordianTests.m; sourceTree = "<group>"; };
+		233E65851B54D980005C99D4 /* ACSegmentedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSegmentedViewController.h; sourceTree = "<group>"; };
+		233E65861B54D980005C99D4 /* ACSegmentedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSegmentedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +79,8 @@
 			children = (
 				233E65631B54D828005C99D4 /* ACAppDelegate.h */,
 				233E65641B54D828005C99D4 /* ACAppDelegate.m */,
-				233E65661B54D828005C99D4 /* ACViewController.h */,
-				233E65671B54D828005C99D4 /* ACViewController.m */,
+				233E65851B54D980005C99D4 /* ACSegmentedViewController.h */,
+				233E65861B54D980005C99D4 /* ACSegmentedViewController.m */,
 				233E656C1B54D828005C99D4 /* Images.xcassets */,
 				233E655F1B54D828005C99D4 /* Supporting Files */,
 			);
@@ -213,9 +213,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				233E65681B54D828005C99D4 /* ACViewController.m in Sources */,
 				233E65651B54D828005C99D4 /* ACAppDelegate.m in Sources */,
 				233E65621B54D828005C99D4 /* main.m in Sources */,
+				233E65871B54D980005C99D4 /* ACSegmentedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

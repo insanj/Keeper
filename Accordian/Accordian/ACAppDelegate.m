@@ -7,12 +7,26 @@
 //
 
 #import "ACAppDelegate.h"
-#import "ACViewController.h"
+#import "ACSegmentedViewController.h"
 
 @implementation ACAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    ACSegmentedViewController *nowViewController = [[ACSegmentedViewController alloc] initWithTitles:@[@"Here", @"Stack", @"Gone"]];
+    nowViewController.title = @"Here";
+    
+    UINavigationController *baseNavigationController = [[UINavigationController alloc] initWithRootViewController:nowViewController];
+    baseNavigationController.restorationIdentifier = @"Accordian.Restoration.Base";
+    baseNavigationController.view.tintColor =
+    baseNavigationController.navigationBar.tintColor = [UIColor colorWithRed:1 green:0.707 blue:0.191 alpha:1];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = baseNavigationController.view.tintColor;
+    self.window.rootViewController = baseNavigationController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
