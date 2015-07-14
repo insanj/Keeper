@@ -1,6 +1,6 @@
 # Accordian
 
-Centralize and aggregate your documents. Part of a simple series of apps created for demonstrating and teaching iOS development.
+Upcoming notes app.
 
 ## License
 
